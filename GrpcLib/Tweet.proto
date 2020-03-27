@@ -1,5 +1,52 @@
 // You have to fill it up!
 
+syntax = "proto3";
+
+package proto;
+
+
+service TweetService {
+	rpc Tweet(TweetIn) returns (TweetOut) {}
+	rpc Follow(FollowIn) returns (FollowOut) {}
+	rpc Show(ShowIn) returns (ShowOut) {}
+	rpc Login(LoginIn) returns (LoginOut) {}
+	rpc Logout(LogoutIn) returns (logoutOut) {}
+	rpc Register(RegisterIn) returns (RegisterOut) {}
+}
+
+message TweetIn {
+	string user = 1;
+	string content = 2;
+	int64 time = 3;
+}
+
+message TweetOut {
+	bool error = 1;
+}
+
+message FollowIn{}
+
+message FollowOut{}
+
+message ShowIn{}
+
+message ShowOut {
+	repeated TweetIn tweets = 1;
+	bool error = 2;
+}
+
+message LoginIn{}
+
+message LoginOut{}
+
+message LogoutIn {}
+
+message logoutOut{}
+
+message RegisterIn{}
+
+message RegisterOut{}
+
 // Once you have completed this you can run both commands in this folder!
 // $VCPKG_ROOT\installed\x64-windows\tools\protobuf\protoc.exe --proto_path=. --cpp_out=. Tweet.proto
 // $VCPKG_ROOT\installed\x64-windows\tools\protobuf\protoc.exe --proto_path=. --grpc_out=. --plugin=protoc-gen-grpc=..\..\vcpkg\installed\x64-windows\tools\grpc\grpc_cpp_plugin.exe Tweet.proto
@@ -11,6 +58,3 @@
 // PROJECT_ROOT/Build> start GrpcTwitter.sln
 // This should start you for the next phase!
 
-syntax = "proto3";
-
-package proto;
